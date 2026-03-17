@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shweta Shah — Digital Marketing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coral: #FF6B5B;
+    --gold: #F5B942;
+    --deep: #1A0E2E;
+    --midnight: #0D0820;
+    --lavender: #C4B5FD;
+    --soft: #F8F4FF;
+    --text: #E8E0FF;
+    --muted: #9B8EC4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--midnight);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 80% at 70% 50%, #3D1A6E 0%, transparent 60%),
+                radial-gradient(ellipse 50% 60% at 10% 80%, #FF6B5B22 0%, transparent 50%),
+                var(--midnight);
+  }
+
+  .hero-left {
+    position: relative;
+    z-index: 2;
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,185,66,0.12);
+    border: 1px solid rgba(245,185,66,0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 32px;
+    width: fit-content;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .badge::before {
+    content: '◆';
+    font-size: 8px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 6vw, 82px);
+    line-height: 1.05;
+    font-weight: 900;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--coral);
+    display: block;
+  }
+
+  .tagline {
+    margin-top: 24px;
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 420px;
+    font-weight: 300;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 40px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .contact-item .icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(196,181,253,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .contact-item span {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .cta-btn {
+    margin-top: 48px;
+    display: inline-block;
+    background: var(--coral);
+    color: white;
+    padding: 16px 36px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: fadeUp 0.8s 0.4s ease both;
+    width: fit-content;
+    cursor: pointer;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(255,107,91,0.35);
+  }
+
+  .hero-right {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 40px;
+  }
+
+  .avatar-wrap {
+    position: relative;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .avatar-ring {
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    border: 2px solid rgba(196,181,253,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .avatar-ring::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    border: 1px dashed rgba(245,185,66,0.2);
+    animation: spin 20s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .avatar-inner {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3D1A6E 0%, #FF6B5B 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 88px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .avatar-inner::after {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 60%;
+    height: 60%;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    filter: blur(20px);
+  }
+
+  .float-chip {
+    position: absolute;
+    background: rgba(13,8,32,0.9);
+    border: 1px solid rgba(196,181,253,0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    padding: 12px 18px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .chip-1 {
+    top: 20px;
+    right: -30px;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .chip-2 {
+    bottom: 40px;
+    left: -50px;
+    color: var(--lavender);
+  }
+
+  .chip-2 .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--coral);
+    display: block;
+  }
+
+  /* ── SECTION STYLES ── */
+  section {
+    padding: 100px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--coral);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 60px;
+  }
+
+  .section-title span {
+    color: var(--lavender);
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .skill-card {
+    background: rgba(196,181,253,0.04);
+    border: 1px solid rgba(196,181,253,0.1);
+    border-radius: 20px;
+    padding: 28px;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(196,181,253,0.3);
+  }
+
+  .skill-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .skill-name {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .skill-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .skill-bar {
+    margin-top: 16px;
+    height: 4px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: linear-gradient(90deg, var(--coral), var(--gold));
+    animation: grow 1.5s ease both;
+    transform-origin: left;
+  }
+
+  @keyframes grow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-wrap {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .exp-wrap::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 8px;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--coral), transparent);
+  }
+
+  .exp-card {
+    position: relative;
+    margin-bottom: 48px;
+    background: rgba(196,181,253,0.04);
+    border: 1px solid rgba(196,181,253,0.1);
+    border-radius: 20px;
+    padding: 32px;
+  }
+
+  .exp-card::before {
+    content: '';
+    position: absolute;
+    left: -34px;
+    top: 28px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--coral);
+    box-shadow: 0 0 16px rgba(255,107,91,0.5);
+  }
+
+  .exp-period {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .exp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .exp-company {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .exp-bullets li {
+    font-size: 14px;
+    color: var(--muted);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--coral);
+    font-size: 12px;
+  }
+
+  /* ── STATS ── */
+  .stats-band {
+    background: linear-gradient(135deg, rgba(255,107,91,0.08), rgba(196,181,253,0.08));
+    border: 1px solid rgba(196,181,253,0.12);
+    border-radius: 28px;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto 0;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--coral);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ── TOOLS ── */
+  .tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .tool-pill {
+    background: rgba(196,181,253,0.06);
+    border: 1px solid rgba(196,181,253,0.15);
+    border-radius: 100px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: default;
+  }
+
+  .tool-pill:hover {
+    background: rgba(255,107,91,0.12);
+    border-color: rgba(255,107,91,0.4);
+    color: var(--coral);
+    transform: translateY(-1px);
+  }
+
+  /* ── CONTACT FOOTER ── */
+  .footer-cta {
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, #3D1A6E 0%, var(--midnight) 70%);
+    text-align: center;
+    padding: 120px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 900;
+    margin-bottom: 16px;
+  }
+
+  .footer-cta p {
+    color: var(--muted);
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  .footer-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(196,181,253,0.08);
+    border: 1px solid rgba(196,181,253,0.2);
+    border-radius: 100px;
+    padding: 14px 28px;
+    font-size: 15px;
+    color: var(--lavender);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .footer-email:hover {
+    background: rgba(255,107,91,0.15);
+    border-color: var(--coral);
+    color: var(--coral);
+  }
+
+  .footer-loc {
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .footer-loc span {
+    color: var(--gold);
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(196,181,253,0.08);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 60px 30px 30px; }
+    .hero-right { padding: 20px 30px 60px; }
+    .avatar-ring { width: 240px; height: 240px; }
+    .avatar-inner { width: 200px; height: 200px; font-size: 64px; }
+    .chip-1, .chip-2 { display: none; }
+    section { padding: 60px 30px; }
+    .stats-band { grid-template-columns: 1fr 1fr; padding: 40px 30px; }
+    .footer-cta { padding: 80px 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-left">
+    <div class="badge">Administration Specialist · IT Industry</div>
+    <h1>Shweta<em>Shah.</em></h1>
+    <p class="tagline">Dedicated Administration professional in the IT industry with 4+ years of experience managing office operations, leveraging modern AI tools, and ensuring smooth day-to-day business functioning.</p>
+
+    <div class="contact-row">
+      <div class="contact-item">
+        <div class="icon">✉</div>
+        <span>shwetashah2308&#64;gmail&#46;com</span>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📍</div>
+        <span>Vadodara, Gujarat, India</span>
+      </div>
+      <div class="contact-item">
+        <div class="icon">💼</div>
+        <span>4 Years of Experience · IT Industry</span>
+      </div>
+      <div class="contact-item">
+        <div class="icon">🔗</div>
+        <a href="https://www.linkedin.com/in/shweta-shah-b2931a192" target="_blank" style="color: var(--lavender); text-decoration: none; font-weight: 500;">linkedin.com/in/shweta-shah-b2931a192</a>
+      </div>
+    </div>
+
+    <a class="cta-btn" href="mailto:shwetashah2308@gmail.com">Get In Touch →</a>
+  </div>
+
+  <div class="hero-right">
+    <div class="avatar-wrap">
+      <div class="avatar-ring">
+        <div class="avatar-inner">SS</div>
+      </div>
+      <div class="float-chip chip-1">⭐ Administration Expert</div>
+      <div class="float-chip chip-2">
+        <span class="num">4+</span>
+        Years Experience
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STATS ══ -->
+<div style="padding: 0 60px;">
+  <div class="stats-band">
+    <div>
+      <div class="stat-num">4+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div>
+      <div class="stat-num">6+</div>
+      <div class="stat-label">AI Tools Mastered</div>
+    </div>
+    <div>
+      <div class="stat-num">100+</div>
+      <div class="stat-label">Tasks Automated</div>
+    </div>
+    <div>
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Work Dedication</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" style="margin-top: 80px;">
+
+<!-- ══ SKILLS ══ -->
+<section>
+  <div class="section-label">What I Do</div>
+  <div class="section-title">Core <span>Skills &amp; Expertise</span></div>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">🗂️</div>
+      <div class="skill-name">Office Administration</div>
+      <div class="skill-desc">Managing daily office operations, scheduling, documentation, and coordinating across departments efficiently.</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-name">AI Tools Proficiency</div>
+      <div class="skill-desc">Hands-on experience with ChatGPT, Gemini AI for content drafting, research, automation, and productivity enhancement.</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">Design & Communication</div>
+      <div class="skill-desc">Creating professional designs, presentations, and marketing materials using Canva for internal and external use.</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🖥️</div>
+      <div class="skill-name">Remote Support & IT Tools</div>
+      <div class="skill-desc">Providing remote desktop assistance using AnyDesk, managing webmail, and handling basic IT coordination tasks.</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📧</div>
+      <div class="skill-name">Email & Correspondence</div>
+      <div class="skill-desc">Managing professional communication via Webmail, drafting business emails, and maintaining organized communication records.</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Data & Reporting</div>
+      <div class="skill-desc">Maintaining records, preparing reports, and using MS Office tools for data organization and presentation.</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:86%"></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ EXPERIENCE ══ -->
+<section>
+  <div class="section-label">My Journey</div>
+  <div class="section-title">Work <span>Experience</span></div>
+
+  <div class="exp-wrap">
+    <div class="exp-card">
+      <div class="exp-period">2022 — PRESENT · 4 Years</div>
+      <div class="exp-title">Administration Executive</div>
+      <div class="exp-company">IT Company · Vadodara, Gujarat</div>
+      <ul class="exp-bullets">
+        <li>Managed day-to-day office administration including scheduling, documentation, vendor coordination, and facility management.</li>
+        <li>Utilized ChatGPT and Gemini AI to draft professional communications, automate repetitive tasks, and boost overall team productivity.</li>
+        <li>Designed office presentations, reports, posters, and visual materials using Canva for internal meetings and client interactions.</li>
+        <li>Provided remote desktop support to employees and clients using AnyDesk, resolving technical access issues efficiently.</li>
+        <li>Managed and organized professional email communication through Webmail — handling correspondence, follow-ups, and record-keeping.</li>
+        <li>Maintained employee records, prepared monthly MIS reports, and managed data using MS Office (Word, Excel, PowerPoint).</li>
+        <li>Coordinated with IT and management teams to streamline internal processes and ensure smooth business operations.</li>
+        <li>Onboarded new employees with system setup, tool training (AnyDesk, Webmail, internal software), and administrative orientation.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ TOOLS ══ -->
+<section>
+  <div class="section-label">My Toolkit</div>
+  <div class="section-title">Tools &amp; <span>Platforms</span></div>
+
+  <div class="tools-grid">
+    <div class="tool-pill">📊 Google Analytics</div>
+    <div class="tool-pill">🎯 Google Ads</div>
+    <div class="tool-pill">📘 Meta Business Suite</div>
+    <div class="tool-pill">🎨 Canva</div>
+    <div class="tool-pill">🤖 AI</div>
+    <div class="tool-pill">✨ Gemini</div>
+    <div class="tool-pill">💬 ChatGPT</div>
+    <div class="tool-pill">🔍 Google Search Console</div>
+    <div class="tool-pill">📣 Meta Ads Manager</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══ FOOTER CTA ══ -->
+<div class="footer-cta">
+  <h2>Let's Work <em style="font-style:italic; color:var(--coral)">Together</em></h2>
+  <p>Open to exciting Administration opportunities in Vadodara and beyond.</p>
+  <a class="footer-email" href="mailto:shwetashah2308@gmail.com">
+    ✉ shwetashah2308&#64;gmail&#46;com
+  </a>
+  <br><br>
+  <a class="footer-email" href="https://www.linkedin.com/in/shweta-shah-b2931a192" target="_blank">
+    🔗 linkedin.com/in/shweta-shah-b2931a192
+  </a>
+  <p class="footer-loc">📍 <span>Vadodara, Gujarat</span> · Available for Full-time &amp; Freelance</p>
+</div>
+
+</body>
+</html>
